@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
     if(!parts.length === 2) return res.status(401).send({ error: 'Token error' })
 
     const [ type, token] = parts
-    if(!/^Bearer$/i.test(type)) return res.status(401).send({ error:  "Token, mal formatted"})
+    if(!/^Bearer$/i.test(type)) return res.status(401).send({ error:  "Token, bad formatted"})
 
     jwt.verify(token, authConfig.secret, (err, decoded) => {
         if(err) return res.status(401).send({ error: 'Token Invalid' })
